@@ -1,0 +1,358 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "Education App"
+  },
+  "host": "localhost:10010",
+  "basePath": "/api/v1",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/sphere": {
+      "x-swagger-router-controller": "get_competence",
+      "get": {
+        "operationId": "getSphere",
+        "description": "Provide list of sphere, filtered out by brand or nationwide. The list support paging",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "level",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/sphere"
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occured.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/sphere/competence": {
+      "x-swagger-router-controller": "get_competence",
+      "get": {
+        "operationId": "getСompetence",
+        "description": "Provide list of competence, filtered out by brand or nationwide. The list support paging",
+        "parameters": [
+          {
+            "name": "C++ programmer",
+            "in": "query",
+            "description": "The name of the competence",
+            "type": "string"
+          },
+          {
+            "name": "Web Designer",
+            "in": "query",
+            "description": "The name of the competence",
+            "type": "string"
+          },
+          {
+            "name": "Interior designer",
+            "in": "query",
+            "description": "The name of the competence",
+            "type": "string"
+          },
+          {
+            "name": "Mobile Application Developer",
+            "in": "query",
+            "description": "The name of the competence",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/competence"
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occured.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/sphere/compentence/{competenceId}": {
+      "x-swagger-router-controller": "get_competence",
+      "get": {
+        "summary": "Gets a certain competence",
+        "description": "Returns the simple competence for its ID",
+        "operationId": "getCompetence",
+        "parameters": [
+          {
+            "name": "competenceId",
+            "in": "path",
+            "required": true,
+            "description": "id of competence",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Name of competence",
+            "type": "string"
+          },
+          {
+            "name": "passed",
+            "in": "query",
+            "description": "passed or not",
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "description": "how many passed",
+            "type": "number",
+            "format": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An competence",
+            "schema": {
+              "$ref": "#/definitions/competenceId"
+            }
+          },
+          "404": {
+            "description": "The competence does not exist"
+          },
+          "500": {
+            "$ref": "#/responses/Standard500ErrorResponse"
+          }
+        }
+      }
+    },
+    "/sphere/competence/{competenceId}/courses": {
+      "x-swagger-router-controller": "get_competence",
+      "get": {
+        "operationId": "getCourses",
+        "description": "Provide list of sphere, filtered out by brand or nationwide. The list support paging",
+        "parameters": [
+          {
+            "name": "competenceId",
+            "in": "path",
+            "required": true,
+            "description": "id of competence",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Name of competence",
+            "type": "string",
+            "format": "integer"
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "description": "price",
+            "type": "number",
+            "format": "float"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/courses"
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error occured.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/sphere/compentence/{competenceId}/courses/{courseId}": {
+      "x-swagger-router-controller": "get_competence",
+      "get": {
+        "summary": "Gets a certain course",
+        "description": "Returns the simple course for its ID",
+        "operationId": "getCourse",
+        "parameters": [
+          {
+            "name": "competenceId",
+            "in": "path",
+            "required": true,
+            "description": "The competence id",
+            "type": "string"
+          },
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "description": "The course id",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Name of course id",
+            "type": "string",
+            "format": "integer"
+          },
+          {
+            "name": "img",
+            "in": "query",
+            "description": "Image URL",
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "description": "price",
+            "type": "number",
+            "format": "float"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An course",
+            "schema": {
+              "$ref": "#/definitions/courseId"
+            }
+          },
+          "404": {
+            "description": "The competence does not exist"
+          },
+          "500": {
+            "$ref": "#/responses/Standard500ErrorResponse"
+          }
+        }
+      }
+    },
+    "/swagger": {
+      "x-swagger-pipe": "swagger_raw"
+    }
+  },
+  "definitions": {
+    "sphere": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Short name of sphere"
+        },
+        "level": {
+          "type": "string",
+          "description": "level"
+        }
+      }
+    },
+    "competence": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Short name of competence"
+        }
+      }
+    },
+    "competenceId": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Short name of competence"
+        },
+        "passed": {
+          "type": "number",
+          "format": "float",
+          "description": "Price of givin currency"
+        },
+        "value": {
+          "type": "number",
+          "format": "float",
+          "description": "how many passed"
+        }
+      }
+    },
+    "courses": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Short name of course"
+        },
+        "price": {
+          "type": "number",
+          "format": "float",
+          "description": "Price"
+        }
+      }
+    },
+    "courseId": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Short name of course"
+        },
+        "price": {
+          "type": "number",
+          "format": "float",
+          "description": "Price"
+        },
+        "image": {
+          "type": "string",
+          "description": "Image URL"
+        }
+      }
+    },
+    "Error": {
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "responses": {
+    "Standard500ErrorResponse": {
+      "description": "An unexpected error occured",
+      "schema": {
+        "$ref": "#/definitions/Error"
+      }
+    }
+  }
+}
